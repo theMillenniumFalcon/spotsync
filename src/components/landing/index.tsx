@@ -1,5 +1,6 @@
+"use client"
+
 import Image from "next/image"
-import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 
 import CustomButton from "@/components/ui/customButton"
@@ -7,6 +8,7 @@ import CustomButton from "@/components/ui/customButton"
 import Logo from "../../../public/logo/logo.svg"
 
 export default function Landing() {
+
   return (
     <div className="w-screen h-screen flex justify-center overflow-hidden overscroll-none">
       <div className="w-full max-w-screen-md px-8 flex flex-col items-center relative">
@@ -35,9 +37,7 @@ export default function Landing() {
           SpotSync is an open-source real-time Spotify playlist collaboration application.
         </div>
         <div className="mt-8 flex space-x-4">
-          <Link href="/sign-up">
-            <CustomButton>Go To App</CustomButton>
-          </Link>
+          <CustomButton onClick={() => {}}>Log In</CustomButton>
           <a
             href="https://github.com/themillenniumfalcon/spotsync"
             target="_blank"

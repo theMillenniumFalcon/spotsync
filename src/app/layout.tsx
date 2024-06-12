@@ -9,7 +9,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "spotsync",
   description: "Real-time Spotify playlist collaboration",
-};
+}
 
 export default function RootLayout({
   children,
