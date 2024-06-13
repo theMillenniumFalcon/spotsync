@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma"
 
 export const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET as string
 
-const authOptions = {
+export const authOptions = {
     secret: NEXTAUTH_SECRET,
     pages: {
       signIn: "/",

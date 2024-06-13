@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
+import { Session } from "next-auth"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
+import { SessionProvider } from "next-auth/react"
 
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/layout/themeProvider"
@@ -13,11 +15,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
+  session: Session
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <SessionProvider session={session}>
+      <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <body>
           <ThemeProvider
             attribute="class"
@@ -30,5 +35,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-  );
+    </SessionProvider>
+  )
 }
