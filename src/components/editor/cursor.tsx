@@ -46,7 +46,7 @@ export const Cursor = ({
                 window.removeEventListener("keydown", ignore)
             }
         }
-    }, [])
+    }, [self, setMessage, setMessageMode])
 
     const expanded = useStore((state) => state.expanded)
 

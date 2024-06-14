@@ -10,7 +10,7 @@ import { List } from "./list"
 import { Avatar } from "./avatar"
 import { LinkPopover } from "./linkPopover"
 
-const Editor = ({
+export const Editor = ({
   setEditorScroll,
   setOpen,
 }: {
@@ -56,7 +56,7 @@ const Editor = ({
         }
       })
     }
-  }, [selected, accessToken])
+  }, [selected, accessToken, setSongs])
 
   const onScroll = useCallback(() => {
     if (ref?.current) {
@@ -125,5 +125,3 @@ const Editor = ({
     </div>
   )
 }
-
-export default Editor
