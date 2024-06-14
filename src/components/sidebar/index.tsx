@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Check, Copy, Loader2, LogOut } from "lucide-react"
 
+import { useStore } from "@/lib/state"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { baseURL } from "@/lib/baseURL"
@@ -15,47 +16,59 @@ interface SidebarProps {
     selected?: any
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ editing }) => {
-    const [selected, setSelected] = useState("")
+const Sidebar: React.FC<SidebarProps> = ({ editing, selected }) => {
+    const data = useStore((state) => state.userData)
+    const setSelected = useStore((state) => state.setSelected)
+    const playlists = useStore((state) => state.playlists)
+
+    const others = useStore((state) => state.liveblocks.others)
+
+    const expanded = useStore((state) => state.expanded)
 
     const [expandedUI, setExpandedUI] = useState(true)
 
+    useEffect(() => {
+      if (expanded) {
+        setTimeout(() => {
+          setExpandedUI(true)
+        }, 100)
+      } else {
+        setExpandedUI(false)
+      }
+    }, [expanded])
+
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
+
+    useEffect(() => {
+      if (selected && playlists?.items) {
+        const p = playlists.items.find((item: any) => item.id === selected)
+        setName(p?.name)
+        setImage(p?.images[0].url)
+      }
+    }, [selected, playlists])
 
     const [copiedId, setCopiedId] = useState(false)
     const [copiedUrl, setCopiedUrl] = useState(false)
 
     useEffect(() => {
-        if (copiedId) {
+      if (copiedId) {
         setTimeout(() => {
-            setCopiedId(false)
+          setCopiedId(false)
         }, 1000)
-        }
+      }
     }, [copiedId])
 
     useEffect(() => {
-        if (copiedUrl) {
+      if (copiedUrl) {
         setTimeout(() => {
-            setCopiedUrl(false)
+          setCopiedUrl(false)
         }, 1000)
-        }
+      }
     }, [copiedUrl])
 
     const pathname = usePathname()
     const roomId = pathname.split("/")[2]
-
-    const data = {
-        name: "john",
-        email: "johndoe@email.com",
-        image: "",
-        userExt: "johnexe",
-        id: "123",
-    }
-
-    const others = {
-        length: 1
-    }
 
     return (
         <div

@@ -34,7 +34,6 @@ type T = {
   messageMode: boolean
   setMessageMode: (messageMode: boolean) => void
   expanded: boolean
-  setExpanded: (expanded: boolean) => void
   userData: UDataType | undefined
   setUserData: (userData: UDataType | undefined) => void
   accessToken: string
@@ -59,7 +58,6 @@ export const useStore = create<WithLiveblocks<T>>()(
       messageMode: false,
       setMessageMode: (messageMode) => set({ messageMode }),
       expanded: true,
-      setExpanded: (expanded) => set({ expanded }),
       userData: {
         name: "",
         email: "",
