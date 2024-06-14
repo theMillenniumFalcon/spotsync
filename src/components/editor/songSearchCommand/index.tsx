@@ -7,7 +7,7 @@ import { useSongSearchStore, useStore } from "@/lib/state"
 import { songType } from "@/types/song"
 import { searchSongs, addSong } from "@/lib/client"
   
-const SongSearchCommand = ({
+export const SongSearchCommand = ({
     open,
     setOpen,
 }: {
@@ -34,7 +34,7 @@ const SongSearchCommand = ({
         window.removeEventListener("keydown", handler)
         window.removeEventListener("keydown", ignore)
       }
-    }, [])
+    }, [setOpen])
   
     const search = useSongSearchStore((state) => state.search)
   
@@ -54,7 +54,7 @@ const SongSearchCommand = ({
       }, 600)
   
       return () => clearTimeout(delayDebounceFn)
-    }, [search])
+    }, [search, accessToken])
   
     const handleSelect = async ({ song }: { song: songType }) => {
       await addSong({
@@ -72,7 +72,7 @@ const SongSearchCommand = ({
       if (open) {
         setMessageMode(false)
       }
-    }, [open])
+    }, [open, setMessageMode])
   
     return (
       <>
@@ -144,7 +144,4 @@ const SongSearchCommand = ({
         </CommandDialog>
       </>
     )
-}
-  
-export default SongSearchCommand
-  
+} 

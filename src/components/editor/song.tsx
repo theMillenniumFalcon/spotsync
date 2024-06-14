@@ -13,11 +13,10 @@ import { songType } from "@/types/song"
 import { deleteSong } from "@/lib/client/deleteSong"
 import { useStore } from "@/lib/state"
 
-const Song = forwardRef(
+export const Song = forwardRef(
   (
     {
       song,
-      id,
       attributes,
       listeners,
     }: { song: songType; id: string; attributes?: any; listeners?: any },
@@ -135,4 +134,3 @@ export const SongOptionsDropdown = ({
 }
 
 Song.displayName = "Song"
-export default Song

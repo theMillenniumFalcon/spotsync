@@ -1,15 +1,15 @@
 "use client"
 
 import React, { useEffect } from "react"
+import { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useSession } from "next-auth/react"
 
-import PlaylistSelect from "@/components/dashboard/playlistSelect"
-import Sidebar from "@/components/sidebar"
+import { PlaylistSelect } from "@/components/dashboard"
+import { Sidebar } from "@/components/sidebar"
 import { UDataType, useStore } from "@/lib/state"
 
 interface DashboardProps {
-  // user: InferGetServerSidePropsType<typeof getServerSideProps>
-  user: any
+  user: InferGetServerSidePropsType<GetServerSideProps>
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ user }) => {
@@ -30,7 +30,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
       image: data?.image,
     }
     setUserData(userData)
-  }, [])
+  }, [data?.email, data?.image, data?.name, setAccessToken, setUserData, user.accounts])
 
   return (
     <div className="h-screen w-screen overflow-hidden">

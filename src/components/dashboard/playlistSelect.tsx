@@ -1,84 +1,121 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { FolderPlus, Music } from "lucide-react"
+import { redirect } from "next/navigation"
+import { useStore } from "@/lib/state"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
-import Creating from "./creating"
+import { getPlaylists } from "@/lib/client"
+import { Creating } from "./creating"
 
 interface PlaylistSelectProps {}
 
-const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
+export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
+    const accessToken = useStore((state) => state.accessToken)
+    const userData = useStore((state) => state.userData)
+    const playlists = useStore((state) => state.playlists)
+    const setPlaylists = useStore((state) => state.setPlaylists)
+    const selected = useStore((state) => state.selected)
+    const setSelected = useStore((state) => state.setSelected)
+
     const [selecting, setSelecting] = useState(true)
-    const [selected, setSelected] = useState("")
+    const [roomId, setRoomId] = useState<string | null>(null)
+
+    useEffect(() => {
+        if (accessToken) {
+            getPlaylists({ accessToken }).then((res) => {
+                if (res.length === 0) setPlaylists({})
+                else setPlaylists(res.playlists)
+            })
+        }
+    }, [accessToken, setPlaylists])
+
+    const createRoom = async (id: string, user?: string) => {
+        if (user) {
+            const res = await fetch(`/api/createRoom?playlist=${id}&user=${user}`, {
+                method: "POST",
+            })
+            const data = await res.json()
+            setRoomId(data.roomId)
+        }
+    }
 
     const selectHandler = (id: string) => {
         setSelected(id)
         setSelecting(false)
-      }
 
-    const playlists = {
-        items: [
-            {
-                id: "playlist1",
-                name: "My Favorite Songs",
-                owner: {
-                    id: "user123",
-                    name: "John Doe"
-                },
-                public: true,
-                images: [
-                    {
-                        url: ""
-                    }
-                ],
-                tracks: [
-                    { id: "track1", title: "Song A", artist: "Artist 1" },
-                    { id: "track2", title: "Song B", artist: "Artist 2" }
-                ]
-            },
-            {
-                id: "playlist1",
-                name: "My Favorite Songs",
-                owner: {
-                    id: "user123",
-                    name: "John Doe"
-                },
-                public: true,
-                images: [
-                    {
-                        url: ""
-                    }
-                ],
-                tracks: [
-                    { id: "track1", title: "Song A", artist: "Artist 1" },
-                    { id: "track2", title: "Song B", artist: "Artist 2" }
-                ]
-            },
-        ]
+        createRoom(id, userData?.id)
     }
 
-    const userData = {
-        name: "john",
-        email: "johndoe@email.com",
-        image: "",
-        userExt: "johnexe",
-        id: "user123",
-    }
+    useEffect(() => {
+        if (roomId) {
+            redirect(`/editor/${roomId}`)
+        }
+    }, [roomId])
+
+    // const playlists = {
+    //     items: [
+    //         {
+    //             id: "playlist1",
+    //             name: "My Favorite Songs",
+    //             owner: {
+    //                 id: "user123",
+    //                 name: "John Doe"
+    //             },
+    //             public: true,
+    //             images: [
+    //                 {
+    //                     url: ""
+    //                 }
+    //             ],
+    //             tracks: [
+    //                 { id: "track1", title: "Song A", artist: "Artist 1" },
+    //                 { id: "track2", title: "Song B", artist: "Artist 2" }
+    //             ]
+    //         },
+    //         {
+    //             id: "playlist1",
+    //             name: "My Favorite Songs",
+    //             owner: {
+    //                 id: "user123",
+    //                 name: "John Doe"
+    //             },
+    //             public: true,
+    //             images: [
+    //                 {
+    //                     url: ""
+    //                 }
+    //             ],
+    //             tracks: [
+    //                 { id: "track1", title: "Song A", artist: "Artist 1" },
+    //                 { id: "track2", title: "Song B", artist: "Artist 2" }
+    //             ]
+    //         },
+    //     ]
+    // }
+
+    // const userData = {
+    //     name: "john",
+    //     email: "johndoe@email.com",
+    //     image: "",
+    //     userExt: "johnexe",
+    //     id: "user123",
+    // }
 
     return (
         <div className="flex h-full min-w-[650px] flex-grow flex-col  items-start justify-start overflow-y-auto p-12">
             <div className="flex w-full items-center justify-between">
                 <div className="text-3xl font-medium">Select A Playlist</div>
                 <Button
-                onClick={() => {
-                    toast.info("Coming soon!")
-                }}
-                disabled={!selecting}
-                className="text-base">
-                <FolderPlus className="mr-2 h-4 w-4" />
+                    onClick={() => {
+                        toast.info("Coming soon!")
+                    }}
+                    disabled={!selecting}
+                    className="text-base">
+                    <FolderPlus className="mr-2 h-4 w-4" />
                     Create New
                 </Button>
             </div>
@@ -124,8 +161,7 @@ const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                     <div className="text-zinc-500">
                         No Playlists Found. Create one to get started!
                     </div>
-                )
-                ) : (
+                )) : (
                 <Creating
                     name = {
                         playlists?.items.find((item: any) => item.id === selected)?.name as string
@@ -133,8 +169,6 @@ const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                 />
                 )}
             </div>
-    </div>
+        </div>
     )
 }
-
-export default PlaylistSelect

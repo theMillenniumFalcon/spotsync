@@ -4,7 +4,7 @@ interface CreatingProps {
     name: string
 }
 
-const Creating: React.FC<CreatingProps> = ({ name }) => {
+export const Creating: React.FC<CreatingProps> = ({ name }) => {
   return (
     <div>
       <Loader2 className="mt-4 h-8 w-8 animate-spin animate-pulse self-center text-zinc-500" />
@@ -16,5 +16,3 @@ const Creating: React.FC<CreatingProps> = ({ name }) => {
     </div>
   )
 }
-
-export default Creating

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 // import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
 
-import Landing from "@/components/landing"
+import { Landing } from "@/components/landing"
 
 export const metadata: Metadata = {
   title: "spotsync",

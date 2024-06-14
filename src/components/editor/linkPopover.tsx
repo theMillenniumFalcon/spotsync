@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { baseURL } from "@/lib/baseURL"
 
-const LinkPopover = () => {
+export const LinkPopover = () => {
     const [copied, setCopied] = useState(false)
     const pathname = usePathname()
     const roomId = pathname.split("/")[2]
@@ -63,5 +63,3 @@ const LinkPopover = () => {
         </Popover>
     )
 }
-
-export default LinkPopover

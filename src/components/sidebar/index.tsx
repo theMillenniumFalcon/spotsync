@@ -16,7 +16,7 @@ interface SidebarProps {
     selected?: any
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ editing, selected }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ editing, selected }) => {
     const data = useStore((state) => state.userData)
     const setSelected = useStore((state) => state.setSelected)
     const playlists = useStore((state) => state.playlists)
@@ -206,5 +206,3 @@ const Sidebar: React.FC<SidebarProps> = ({ editing, selected }) => {
     </div>
     )
 }
-
-export default Sidebar

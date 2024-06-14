@@ -6,7 +6,7 @@ import CustomButton from "@/components/ui/customButton"
 
 import Logo from "../../../public/logo/logo.svg"
 
-export default function NotFound() {
+export const NotFound = () => {
   return (
     <div className="w-screen h-screen flex justify-center overflow-hidden overscroll-none">
       <div className="w-full max-w-screen-md px-8 flex flex-col items-center relative">
