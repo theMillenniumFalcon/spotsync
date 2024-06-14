@@ -15,6 +15,7 @@ export const List = ({ songs, setSongs }: {
 }) => {
     const [active, setActive] = useState<songType>()
     const [activeId, setActiveId] = useState<string | null>(null)
+
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
@@ -58,7 +59,7 @@ export const List = ({ songs, setSongs }: {
     useEffect(() => {
         const a = songs?.find((item: any) => item?.id === activeId)
         setActive(a)
-    }, [activeId])
+    }, [activeId, songs])
 
     const handleDragStart = (event: any) => {
         const { active } = event
