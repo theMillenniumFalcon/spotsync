@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { ChevronRight } from "lucide-react"
+import { signIn } from "next-auth/react"
 
 import CustomButton from "@/components/ui/customButton"
 
@@ -37,7 +38,7 @@ export default function Landing() {
           SpotSync is an open-source real-time Spotify playlist collaboration application.
         </div>
         <div className="mt-8 flex space-x-4">
-          <CustomButton onClick={() => {}}>Log In</CustomButton>
+          <CustomButton onClick={() => signIn("spotify")}>Log In</CustomButton>
           <a
             href="https://github.com/themillenniumfalcon/spotsync"
             target="_blank"

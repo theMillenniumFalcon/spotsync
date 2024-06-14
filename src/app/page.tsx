@@ -1,28 +1,20 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next"
-import { getServerSession } from "next-auth"
+import type { Metadata } from "next"
+// import { useSession } from "next-auth/react"
+import { redirect } from "next/navigation"
 
 import Landing from "@/components/landing"
-import { authOptions } from "./api/auth/[...nextauth]/options"
 
-export default function Home() {
-  return <Landing />
+export const metadata: Metadata = {
+  title: "spotsync",
+  description: "Real-time Spotify playlist collaboration",
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions)
+export default function Home() {
+  // const { data: session} = useSession()
 
-  if (session) {
-    return {
-      redirect: {
-        destination: "/dashboard",
-        permanent: false,
-      },
-    }
-  }
+  // if (session) {
+  //   redirect("/dashboard")
+  // }
 
-  return {
-    props: {
-      session,
-    },
-  }
+  return <Landing />
 }

@@ -1,4 +1,4 @@
-import NextAuth, { Session, TokenSet, User } from "next-auth"
+import { NextAuthOptions, Session, TokenSet, User } from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import SpotifyProvider from "next-auth/providers/spotify"
 
@@ -6,12 +6,11 @@ import prisma from "@/lib/prisma"
 
 export const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET as string
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
     secret: NEXTAUTH_SECRET,
     pages: {
       signIn: "/",
     },
-  
     adapter: PrismaAdapter(prisma),
     providers: [
       SpotifyProvider({
@@ -22,7 +21,6 @@ export const authOptions = {
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
       }),
     ],
-  
     callbacks: {
       async session({ session, user }: { session: Session; user: User }) {
         const spotify = await prisma.account.findUnique({
@@ -70,9 +68,8 @@ export const authOptions = {
             console.error("Error refreshing access token", error)
           }
         }
+
         return session
       },
     },
 }
-
-export default NextAuth(authOptions)
