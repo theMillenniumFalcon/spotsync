@@ -30,27 +30,27 @@ export const List = ({ songs, setSongs }: {
         const { active, over } = event
 
         if (active?.id !== over?.id) {
-        const change = () => {
-            const oldIndex = songs.indexOf(
-            songs.find((item: songType) => item?.id === active?.id)!
-            )
-            const newIndex = songs.indexOf(
-            songs.find((item: songType) => item?.id === over?.id)!
-            )
+            const change = () => {
+                const oldIndex = songs.indexOf (
+                    songs.find((item: songType) => item?.id === active?.id)!
+                )
+                const newIndex = songs.indexOf (
+                    songs.find((item: songType) => item?.id === over?.id)!
+                )
 
-            if (newIndex !== -1) {
-            moveSong({
-                accessToken,
-                start: oldIndex,
-                insert: newIndex,
-                playlist,
-            })
-            return arrayMove(songs, oldIndex, newIndex)
-            } else {
-            return songs
+                if (newIndex !== -1) {
+                    moveSong({
+                        accessToken,
+                        start: oldIndex,
+                        insert: newIndex,
+                        playlist,
+                    })
+                    return arrayMove(songs, oldIndex, newIndex)
+                } else {
+                    return songs
+                }
             }
-        }
-        setSongs(change())
+            setSongs(change())
         }
 
         setActiveId(null)
