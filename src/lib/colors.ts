@@ -14,4 +14,4 @@ export const COLORS: (
     "#f97316",
     "#a855f7",
     "#ec4899",
-]  
+]

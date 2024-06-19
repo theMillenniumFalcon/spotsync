@@ -1,13 +1,17 @@
-"use client"
-
+import type { Metadata } from "next"
 import { Session } from "next-auth"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
-import { SessionProvider } from "next-auth/react"
 
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/layout/themeProvider"
+import AuthProvider from "@/context/AuthProvider"
 import "./globals.css"
+
+export const metadata: Metadata = {
+  title: "spotsync",
+  description: "Real-time Spotify playlist collaboration",
+}
 
 export default function RootLayout({
   children,
@@ -17,7 +21,7 @@ export default function RootLayout({
   session: Session
 }>) {
   return (
-    <SessionProvider session={session}>
+    <AuthProvider>
       <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <body>
           <ThemeProvider
@@ -31,6 +35,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </SessionProvider>
+    </AuthProvider>
   )
 }
