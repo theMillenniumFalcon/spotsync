@@ -20,17 +20,17 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const setAccessToken = useStore((state) => state.setAccessToken)
 
   useEffect(() => {
-    setAccessToken(user.accounts?.[0].access_token)
+    setAccessToken(user?.accounts?.[0].access_token)
 
     const userData: UDataType = {
-      id: user.accounts?.[0].providerAccountId,
-      userExt: user.accounts?.[0].providerAccountId,
+      id: user?.accounts?.[0].providerAccountId,
+      userExt: user?.accounts?.[0].providerAccountId,
       email: data?.email,
       name: data?.name,
       image: data?.image,
     }
     setUserData(userData)
-  }, [data?.email, data?.image, data?.name, setAccessToken, setUserData, user.accounts])
+  }, [data?.email, data?.image, data?.name, setAccessToken, setUserData, user?.accounts])
 
   return (
     <div className="h-screen w-screen overflow-hidden">

@@ -56,55 +56,6 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
         }
     }, [roomId])
 
-    // const playlists = {
-    //     items: [
-    //         {
-    //             id: "playlist1",
-    //             name: "My Favorite Songs",
-    //             owner: {
-    //                 id: "user123",
-    //                 name: "John Doe"
-    //             },
-    //             public: true,
-    //             images: [
-    //                 {
-    //                     url: ""
-    //                 }
-    //             ],
-    //             tracks: [
-    //                 { id: "track1", title: "Song A", artist: "Artist 1" },
-    //                 { id: "track2", title: "Song B", artist: "Artist 2" }
-    //             ]
-    //         },
-    //         {
-    //             id: "playlist1",
-    //             name: "My Favorite Songs",
-    //             owner: {
-    //                 id: "user123",
-    //                 name: "John Doe"
-    //             },
-    //             public: true,
-    //             images: [
-    //                 {
-    //                     url: ""
-    //                 }
-    //             ],
-    //             tracks: [
-    //                 { id: "track1", title: "Song A", artist: "Artist 1" },
-    //                 { id: "track2", title: "Song B", artist: "Artist 2" }
-    //             ]
-    //         },
-    //     ]
-    // }
-
-    // const userData = {
-    //     name: "john",
-    //     email: "johndoe@email.com",
-    //     image: "",
-    //     userExt: "johnexe",
-    //     id: "user123",
-    // }
-
     return (
         <div className="flex h-full min-w-[650px] flex-grow flex-col  items-start justify-start overflow-y-auto p-12">
             <div className="flex w-full items-center justify-between">
@@ -124,7 +75,7 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                     {JSON.stringify(playlists, null, "\t")}
                 </div> */}
                 {selecting ? (
-                    playlists ? (
+                    playlists.length !== 0 ? (
                         playlists?.items?.map((playlist: any, i: number) => {
                         if (userData?.id !== playlist.owner.id || !playlist.public) return null
                         return (
@@ -157,16 +108,16 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                             </Button>
                         )
                     })
-                ) : (
-                    <div className="text-zinc-500">
-                        No Playlists Found. Create one to get started!
-                    </div>
-                )) : (
-                <Creating
-                    name = {
-                        playlists?.items.find((item: any) => item.id === selected)?.name as string
-                    }
-                />
+                    ) : (
+                        <div className="text-zinc-500">
+                            No Playlists Found. Create one to get started!
+                        </div>
+                    )) : (
+                    <Creating
+                        name = {
+                            playlists?.items?.find((item: any) => item.id === selected)?.name as string
+                        }
+                    />
                 )}
             </div>
         </div>
