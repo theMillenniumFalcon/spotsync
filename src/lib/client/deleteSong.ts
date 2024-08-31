@@ -15,12 +15,21 @@ export const deleteSong = async ({
 }) => {
   const newSongs = songs.filter((song) => song.id !== track.id)
   setSongs(newSongs)
-  await fetch(
-    `/api/spotify/deleteItem?playlist=${playlist}&track=${
-      "spotify:track:" + track.id
-    }&accessToken=${accessToken}`,
-    {
-      method: "POST",
-    }
-  )
+  
+  const response = await fetch("/api/spotify/deleteItem", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
+    },
+    body: JSON.stringify({
+      playlist,
+      track: `spotify:track:${track.id}`
+    })
+  })
+
+  if (!response.ok) {
+    setSongs(songs)
+    throw new Error("Failed to delete song")
+  }
 }

@@ -40,7 +40,7 @@ export const Song = forwardRef(
     return (
       <div
         ref={ref}
-        className="flex items-center  justify-between rounded-md bg-zinc-100 p-3 text-zinc-900 hover:bg-zinc-200">
+        className="flex items-center  justify-between rounded-md p-3 text-base bg-zinc-800 transition duration-150 ease-in-out hover:bg-zinc-700">
         <div className="flex items-center">
           {attributes && listeners ? (
             <button
@@ -68,9 +68,8 @@ export const Song = forwardRef(
           <div className="ml-3">
             <div className="w-64 overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium 2xl:w-96">
               {song?.title}
-              {/* {id ?? "none"} */}
             </div>
-            <div className="w-64 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-normal text-zinc-500 2xl:w-96">
+            <div className="w-64 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-normal text-zinc-400 2xl:w-96">
               {song?.artist}
             </div>
           </div>

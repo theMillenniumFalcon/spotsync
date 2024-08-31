@@ -57,7 +57,7 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
     }, [roomId])
 
     return (
-        <div className="flex h-full min-w-[650px] flex-grow flex-col  items-start justify-start overflow-y-auto p-12">
+        <div className="flex h-full min-w-[650px] flex-grow flex-col items-start justify-start overflow-y-auto p-12">
             <div className="flex w-full items-center justify-between">
                 <div className="text-3xl font-medium">Select A Playlist</div>
                 <Button
@@ -70,7 +70,7 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                     Create New
                 </Button>
             </div>
-            <div className=" mt-8 flex w-full max-w-screen-lg flex-wrap gap-4">
+            <div className=" mt-8 flex w-full flex-wrap gap-4">
                 {/* <div className="h-96 w-[900px] overflow-auto whitespace-pre text-xs">
                     {JSON.stringify(playlists, null, "\t")}
                 </div> */}

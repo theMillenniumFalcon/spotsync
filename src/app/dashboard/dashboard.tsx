@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useSession } from "next-auth/react"
 
 import { PlaylistSelect } from "@/components/dashboard"

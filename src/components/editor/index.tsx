@@ -10,10 +10,7 @@ import { List } from "./list"
 import { Avatar } from "./avatar"
 import { LinkPopover } from "./linkPopover"
 
-export const Editor = ({
-  setEditorScroll,
-  setOpen,
-}: {
+export const Editor = ({ setEditorScroll, setOpen }: {
   setEditorScroll: (editorScroll: number) => void
   setOpen: Dispatch<React.SetStateAction<boolean>>
 }) => {
@@ -105,7 +102,7 @@ export const Editor = ({
         </div>
         <div className="flex items-center space-x-4">
           <div className="flex items-center">
-            <Avatar name="Ishaan" src={data?.image} clr="zinc" />
+            <Avatar name={data?.name!} src={data?.image} clr="zinc" />
             {others.map(({ connectionId, presence }) => (
               <Avatar
                 // @ts-ignore
