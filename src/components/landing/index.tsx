@@ -16,7 +16,7 @@ export const Landing = () => {
     <>
       <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />
       <div className="w-screen h-screen flex justify-center overflow-hidden overscroll-none">
-        <div className="w-full max-w-screen-md px-8 flex flex-col items-center relative">
+        <div className="w-full max-w-screen-lg px-8 flex flex-col items-center relative">
           <div className="w-full flex items-center justify-between py-8">
             <div className="flex items-center font-medium">
               <Image
@@ -51,6 +51,20 @@ export const Landing = () => {
               GitHub Repository
               <ChevronRight className="h-4 w-4 ml-1 transition-all group-hover:translate-x-1" />
             </a>
+          </div>
+          <div className="mt-6">
+            <video
+              width="320"
+              height="240"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+            >
+            <source src="/gif/listening_song.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
