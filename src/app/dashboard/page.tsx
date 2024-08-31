@@ -14,7 +14,7 @@ const DashboardPage: React.FC<DashboardProps> = async () => {
     redirect('/')
   }
 
-  const user = await prisma.user.findUnique({
+  const user = await prisma!.user.findUnique({
     where: {
       email: session.user?.email ?? "",
     },
