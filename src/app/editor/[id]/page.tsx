@@ -18,7 +18,7 @@ const EditorPage: React.FC<EditorPageProps> = async ({ params }) => {
     redirect('/')
   }
 
-  const user = await prisma.user.findUnique({
+  const user = await prisma!.user.findUnique({
     where: {
       email: session.user?.email ?? "",
     },
@@ -27,7 +27,7 @@ const EditorPage: React.FC<EditorPageProps> = async ({ params }) => {
     },
   })
 
-  const room = await prisma.room.findUnique({
+  const room = await prisma!.room.findUnique({
     where: {
       id: params.id,
     },
