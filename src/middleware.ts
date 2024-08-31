@@ -20,6 +20,19 @@ export async function middleware(request: NextRequest) {
     }
 }
 
+// export async function middleware(request: NextRequest) {
+//   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+
+//   if (token) {
+//     console.log('Session token found:', token)
+//     return NextResponse.next()
+//   } else {
+//     console.log('No session token found')
+//     // Redirect to login page or show an error
+//     return NextResponse.redirect(new URL('/login', request.url))
+//   }
+// }
+
 export const config = {
   matcher: '/',
 }
