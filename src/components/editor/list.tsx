@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from "react"
 import { DndContext, DragOverlay, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core"
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable"
@@ -73,7 +75,8 @@ export const List = ({ songs, setSongs }: {
             sensors={sensors}
             collisionDetection={closestCenter}
             onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}>
+            onDragEnd={handleDragEnd}
+        >
             <div className="mt-8 flex w-full max-w-screen-xs flex-col space-y-2 2xl:max-w-screen-sm">
             {songs ? (
                 <SortableContext
@@ -94,7 +97,7 @@ export const List = ({ songs, setSongs }: {
             ) : null}
             </div>
             <DragOverlay>
-            {activeId && active ? <Song id={activeId} song={active} /> : null}
+                {activeId && active ? <Song id={activeId} song={active} /> : null}
             </DragOverlay>
         </DndContext>
         </>
