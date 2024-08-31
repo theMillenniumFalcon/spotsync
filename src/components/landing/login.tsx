@@ -18,7 +18,7 @@ export default function LoginModal({ open, setOpen }: {
           <DialogTitle>SpotSync</DialogTitle>
         </DialogHeader>
         <div className="text-sm text-muted-foreground">
-            Spotify doesn't allow public OAuth access, so the developer needs 
+            Spotify doesn&apos;t allow public OAuth access, so the developer needs 
             to manually give users access.
         </div>
         <div className="flex flex-row items-center justify-between">

@@ -38,7 +38,7 @@ const Editor = ({ user, playlist, expiry, owner }: InferGetServerSidePropsType<G
             setAccessToken(user?.accounts?.[0].access_token)
         }
         setSelected(playlist)
-    }, [])
+    }, [data?.email, data?.image, data?.name, owner, playlist, setAccessToken, setSelected, setUserData, user?.accounts])
 
     const {
         liveblocks: { enterRoom, leaveRoom },

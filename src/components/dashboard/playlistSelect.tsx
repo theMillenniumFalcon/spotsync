@@ -31,7 +31,7 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                 else setPlaylists(res.playlists)
           })
         }
-    }, [accessToken])
+    }, [accessToken, setPlaylists])
 
     const createRoom = async (id: string, user?: string) => {
         if (user) {
@@ -71,9 +71,6 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                 </Button>
             </div>
             <div className=" mt-8 flex w-full flex-wrap gap-4">
-                {/* <div className="h-96 w-[900px] overflow-auto whitespace-pre text-xs">
-                    {JSON.stringify(playlists, null, "\t")}
-                </div> */}
                 {selecting ? (
                     playlists.length !== 0 ? (
                         playlists?.items?.map((playlist: any, i: number) => {
