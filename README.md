@@ -1,7 +1,3 @@
 Real-time Spotify playlist collaboration
 
-`
-require('crypto').randomBytes(32).toString('base64')
-`
-
-This is a test statement
+![Home Page](./public/screenshots/scrrenshot_1.png)
