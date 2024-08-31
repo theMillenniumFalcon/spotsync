@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useSession } from "next-auth/react"
 
@@ -31,19 +31,19 @@ const EditorScreen = ({
 
     useEffect(() => {
         const userData: UDataType = {
-            id: user.accounts?.[0].providerAccountId,
-            userExt: user.accounts?.[0].providerAccountId,
+            id: user?.accounts?.[0].providerAccountId,
+            userExt: user?.accounts?.[0].providerAccountId,
             email: data?.email,
             name: data?.name,
             image: data?.image,
         }
         setUserData(userData)
 
-        if (owner === user.accounts?.[0].providerAccountId) {
-            setAccessToken(user.accounts?.[0].access_token)
+        if (owner === user?.accounts?.[0].providerAccountId) {
+            setAccessToken(user?.accounts?.[0].access_token)
         }
         setSelected(playlist)
-    }, [data?.email, data?.name, data?.image, owner, playlist, setAccessToken, setSelected, setUserData, user.accounts])
+    }, [data?.email, data?.name, data?.image, owner, playlist, setAccessToken, setSelected, setUserData, user?.accounts])
 
     const {
         liveblocks: { enterRoom, leaveRoom },
@@ -63,8 +63,8 @@ const EditorScreen = ({
     const [editorScroll, setEditorScroll] = useState(0)
     const [songDialogOpen, setSongDialogOpen] = useState(false)
 
-    const router = useRouter()
-    const roomId = router.asPath.split("/")[2]
+    const pathname = usePathname()
+    const roomId = pathname.split("/")[2]
 
     const expired = expiry < Date.now()
 
@@ -79,7 +79,7 @@ const EditorScreen = ({
 
     useEffect(() => {
         if (accessToken) {
-        getPlaylists({ accessToken }).then((res) => {
+        getPlaylists(accessToken).then((res) => {
             setPlaylists(res.playlists)
         })
         }

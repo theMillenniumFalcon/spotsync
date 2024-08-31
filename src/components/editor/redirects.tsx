@@ -22,7 +22,7 @@ export const NoRoom = ({ expired }: { expired: boolean }) => {
         <div className="mb-8 text-4xl">
             {expired 
                 ? "This editing room expired. Create a new one to keep going!"
-                : "This editing room doesn&apos;t exist!"
+                : "This editing room doesn't exist!"
             }
         </div>
         <Button size="lg" variant={"default"}>

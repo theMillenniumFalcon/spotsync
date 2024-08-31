@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { Session } from "next-auth"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 
@@ -14,11 +13,9 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children,
-  session
+  children
 }: Readonly<{
   children: React.ReactNode
-  session: Session
 }>) {
   return (
     <AuthProvider>

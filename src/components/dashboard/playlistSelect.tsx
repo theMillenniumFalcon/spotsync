@@ -26,12 +26,12 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
 
     useEffect(() => {
         if (accessToken) {
-            getPlaylists({ accessToken }).then((res) => {
+            getPlaylists(accessToken).then((res) => {
                 if (res.length === 0) setPlaylists({})
                 else setPlaylists(res.playlists)
-            })
+          })
         }
-    }, [accessToken, setPlaylists])
+    }, [accessToken])
 
     const createRoom = async (id: string, user?: string) => {
         if (user) {
@@ -79,33 +79,33 @@ export const PlaylistSelect: React.FC<PlaylistSelectProps> = ({ }) => {
                         playlists?.items?.map((playlist: any, i: number) => {
                         if (userData?.id !== playlist.owner.id || !playlist.public) return null
                         return (
-                            <Button
+                            <div
                                 key={i}
-                                className="h-auto w-52 flex-col items-start justify-start rounded-lg p-3 text-base"
-                                variant="subtle"
-                                onClick={() => selectHandler(playlist.id)}>
-                            <div className="relative mb-4 aspect-square w-full overflow-hidden rounded-md bg-zinc-800">
-                                {playlist.images[0]?.url ? (
-                                    <Image
-                                        src={playlist.images[0].url}
-                                        alt="playlist image"
-                                        fill
-                                        sizes="250px"
-                                        className="z-10 min-h-full min-w-full object-cover"
-                                    />
-                                ) : (
-                                <div className="z-0 flex h-full w-full items-center justify-center">
-                                    <Music className="h-12 w-12 text-white" />
+                                className="h-auto w-52 cursor-pointer flex-col items-start justify-start rounded-lg p-3 text-base bg-zinc-800 transition duration-150 ease-in-out hover:bg-zinc-700"
+                                onClick={() => selectHandler(playlist.id)}
+                            >
+                                <div className="relative mb-4 aspect-square w-full overflow-hidden rounded-md bg-zinc-800">
+                                    {playlist.images[0]?.url ? (
+                                        <Image
+                                            src={playlist.images[0].url}
+                                            alt="playlist image"
+                                            fill
+                                            sizes="250px"
+                                            className="z-10 min-h-full min-w-full object-cover"
+                                        />
+                                    ) : (
+                                    <div className="z-0 flex h-full w-full items-center justify-center">
+                                        <Music className="h-12 w-12 text-white" />
+                                    </div>
+                                    )}
                                 </div>
-                                )}
+                                <div className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-left">
+                                    {playlist.name}
+                                </div>
+                                <div className="ellipsis mt-1 h-5 w-full overflow-hidden whitespace-nowrap text-left text-sm font-normal text-zinc-500">
+                                    {playlist.description ?? ""}
+                                </div>
                             </div>
-                            <div className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-left">
-                                {playlist.name}
-                            </div>
-                            <div className="ellipsis mt-1 h-5 w-full overflow-hidden whitespace-nowrap text-left text-sm font-normal text-zinc-500">
-                                {playlist.description ?? ""}
-                            </div>
-                            </Button>
                         )
                     })
                     ) : (
