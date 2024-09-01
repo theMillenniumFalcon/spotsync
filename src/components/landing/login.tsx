@@ -22,7 +22,10 @@ export default function LoginModal({ open, setOpen }: {
             to manually give users access.
         </div>
         <div className="flex flex-row items-center justify-between">
-            <CustomButton className="w-full mr-2">
+            <CustomButton 
+              className="w-full mr-2"
+              onClick={() => window.open("https://x.com/nishankstwt")}
+            >
                 Ask for access
             </CustomButton>
             <Button 
