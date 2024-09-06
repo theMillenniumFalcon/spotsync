@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
+import { signOut } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { Check, Copy, Loader2, LogOut } from "lucide-react"
@@ -173,7 +174,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ editing, selected }) => {
         ) : null}
       </div>
       <Button
-        onClick={() => {}}
+        onClick={() => signOut()}
         className={cn(
           !expandedUI && "max-w-[4rem]",
           "group relative m-0 flex h-16 w-full items-center justify-start rounded-lg bg-transparent p-2 text-left hover:bg-zinc-800 focus:ring-zinc-700 focus:ring-offset-zinc-900"
