@@ -1,3 +1,3 @@
 Real-time Spotify playlist collaboration
 
-![Home Page](./public/screenshots/screenshot_1.png)
+![Home Page](./public/screenshots/screenshot.png)
