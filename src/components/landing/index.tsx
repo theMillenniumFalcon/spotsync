@@ -27,13 +27,6 @@ export const Landing = () => {
                 className="mr-2"
               />
             </div>
-            <a 
-              href="https://nishank.vercel.app" 
-              target="_blank"
-              className="text-muted-foreground underline decoration-neutral-600 underline-offset-4 focus:(decoration-neutral-500 outline-offset-6) hover:decoration-neutral-500"
-            >
-              developer&apos;s website
-            </a>
           </div>
           <h1 className="text-2xl font-medium text-center mt-16">
             A playlist collaboration application
@@ -65,6 +58,18 @@ export const Landing = () => {
             <source src="/gif/listening_song.mp4" type="video/mp4" />
             Your browser does not support the video tag.
             </video>
+          </div>
+          <div className="absolute bottom-4 right-4">
+            <p className="select-none cursor-default text-muted-foreground grayscale">
+              Built with ❤️ by{" "}
+              <a 
+                  href="https://nishank.vercel.app" 
+                  target="_blank"
+                  className="text-white underline decoration-neutral-600 underline-offset-4 focus:(decoration-neutral-500 outline-offset-6) hover:decoration-neutral-500"
+              >
+                Nishank Priydarshi
+              </a>
+            </p>
           </div>
         </div>
       </div>
